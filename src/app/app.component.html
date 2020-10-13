@@ -1,0 +1,32 @@
+<div class="container">
+	<div class="row">
+		<div class="col-lg-12">
+			<table class="table table-bordered">
+				<thead>
+					<th>Name</th>
+					<th>Mobile</th>
+					<th>Email</th>
+				</thead>
+				<tr *ngFor="let user of tableData">
+					<td *ngIf="user.id === editRowID"><input type="text" [(ngModel)]="user.name"></td>
+					<td *ngIf="user.id !== editRowID" (click)="Edit(user.id)">{{user.name}}</td>
+					<td *ngIf="user.id === editRowID">
+						<select>
+              <option value="0">--All--</option>
+              <option *ngFor="let mno of user" value={{mno.mobile}}>
+      {{mno.mobile}}
+    </option>
+  </select>
+					</td>
+					<td *ngIf="user.id !== editRowID">{{user.mobile}}</td>
+					<td *ngIf="user.id === editRowID"><input type="text" [(ngModel)]="user.email"></td>
+					<td *ngIf="user.id !== editRowID">{{user.email}}</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
+
+<div class="roe">
+	<pre>{{tableData | json}}</pre>
+</div>
